@@ -44,7 +44,7 @@ for (const form of subscribeForms) {
         });
         if (error) {
           if (error.code === '23505') {
-            setStatus(statusEl, '이미 가입하신 이메일입니다. 감사합니다!', true);
+            setStatus(statusEl, '이미 등록하신 이메일입니다. 감사합니다!', true);
             form.reset();
             return;
           }
