@@ -69,7 +69,7 @@ def create_app():
                         datetime.utcnow().isoformat(timespec="seconds"),
                     ),
                 )
-        except psycopg2.IntegrityError:
+        except (sqlite3.IntegrityError, psycopg2.IntegrityError):
             # email already exists
             return jsonify({"ok": True, "message": "이미 등록된 이메일입니다. 감사합니다!"})
 
