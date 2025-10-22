@@ -42,7 +42,14 @@ for (const form of subscribeForms) {
           email,
           user_agent: navigator.userAgent || '',
         });
-        if (error) throw error;
+        if (error) {
+          if (error.code === '23505') {
+            setStatus(statusEl, '이미 가입하신 이메일입니다. 감사합니다!', true);
+            form.reset();
+            return;
+          }
+          throw new Error(error.message || '오류가 발생했습니다.');
+        }
         setStatus(statusEl, '등록이 완료되었습니다. 감사합니다!', true);
         form.reset();
         await updateCount();
