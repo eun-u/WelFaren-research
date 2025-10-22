@@ -1,6 +1,7 @@
 import os
 import re
 import sqlite3
+import psycopg2
 from datetime import datetime
 from pathlib import Path
 
@@ -68,7 +69,7 @@ def create_app():
                         datetime.utcnow().isoformat(timespec="seconds"),
                     ),
                 )
-        except sqlite3.IntegrityError:
+        except psycopg2.IntegrityError:
             # email already exists
             return jsonify({"ok": True, "message": "이미 등록된 이메일입니다. 감사합니다!"})
 
